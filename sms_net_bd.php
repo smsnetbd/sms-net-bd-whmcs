@@ -130,7 +130,7 @@ function sms_net_bd_output()
         <span aria-hidden="true">×</span></button>' . $message . '</div>';
     }
 
-    function formatString($inputString)
+    function formatHookName($inputString)
     {
 
         $formattedString = preg_replace('/_admin$/', '', $inputString);

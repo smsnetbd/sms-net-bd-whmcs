@@ -131,7 +131,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td class="fieldlabel" width="30%"><input type="checkbox" value="on" id="<?= $template['id']; ?>_checkbox" name="<?= $template['id']; ?>_active" <?= $active ?> onchange="togglecheckbox(this)"><label for="<?= $template['id']; ?>_checkbox"> <?= formatString($template['name']); ?></label></td>
+                                        <td class="fieldlabel" width="30%"><input type="checkbox" value="on" id="<?= $template['id']; ?>_checkbox" name="<?= $template['id']; ?>_active" <?= $active ?> onchange="togglecheckbox(this)"><label for="<?= $template['id']; ?>_checkbox"> <?= formatHookName($template['name']); ?></label></td>
                                         <td class="fieldarea">
                                             <textarea name="<?= $template['id']; ?>_template" class="form-control" <?= $disabled ?> id="<?= $template['id']; ?>_check"><?= $template['content']; ?></textarea>
                                             <span><?= $template['description']; ?></span>
