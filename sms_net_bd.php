@@ -96,7 +96,7 @@ function sms_net_bd_activate()
     $function = new SmsClass();
     $function->checkHooks();
 
-    return array('status' => 'success', 'description' => 'Sms.Net.BD successfully activated.');
+    return array('status' => 'success', 'description' => 'sms.net.bd successfully activated.');
 }
 
 function sms_net_bd_deactivate()
@@ -113,7 +113,7 @@ function sms_net_bd_deactivate()
     $query = "DROP TABLE IF EXISTS `sms_net_bd_otp`";
     mysql_query($query);
 
-    return array('status' => 'success', 'description' => 'Sms.Net.BD successfully deactivated.');
+    return array('status' => 'success', 'description' => 'sms.net.bd successfully deactivated.');
 }
 
 function sms_net_bd_upgrade()
