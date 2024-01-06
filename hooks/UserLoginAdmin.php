@@ -21,7 +21,12 @@ if (!function_exists('UserLoginAdmin')) {
         if (empty($settings['api_key'])) {
             return null;
         }
-        $admin_numbers = explode(",", $template['admin_numbers']);
+
+        if (empty($template['admin_numbers'])) {
+            return null;
+        }
+
+
         $result   = $class->getClientDetailsBy($args['userid']);
         $company_details = $class->getCompanyName();
         $num_rows = mysql_num_rows($result);
@@ -31,14 +36,11 @@ if (!function_exists('UserLoginAdmin')) {
             $replacefrom           = explode(",", $template['variables']);
             $replaceto = array($UserInformation['firstname'], $UserInformation['lastname'], $company_details['CompanyName']);
             $message               = str_replace($replacefrom, $replaceto, $template['content']);
-            foreach ($admin_numbers as $gsm) {
-                if (!empty($gsm)) {
-                    $class->setNumber(trim($gsm));
-                    $class->setUserid(0);
-                    $class->setMessage($message);
-                }
-                $class->send();
-            }
+
+            $class->setNumber($template['admin_numbers']);
+            $class->setUserid(0);
+            $class->setMessage($message);
+            $class->send();
         }
     }
 }

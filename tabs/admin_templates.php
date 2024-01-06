@@ -36,21 +36,32 @@
                                 ];
 
                                 $admin_numbers = explode(",", $update['admin_numbers']);
+
                                 $invalidNumbers = [];
 
                                 $error = false;
 
+                                $valid_admin_numbers = [];
+
                                 foreach ($admin_numbers as $gsm) {
                                     if (!empty($gsm)) {
-                                        if (!$class->validatePhoneNumber($gsm)) {
+
+                                        $validated = $class->validatePhoneNumber($gsm);
+
+                                        if (!$validated) {
                                             $hook_name = $data['name'];
                                             $invalidNumbers[] = $gsm;
                                             $errorMessage = "Invalid Admin Number ( " . implode(',', $invalidNumbers) . " ) for " . $hook_name;
                                             $errorMessages[$hook_name] = $errorMessage;
                                             $error = true;
                                         }
+                                        $valid_admin_numbers[] = $validated;
                                     }
                                 }
+
+                                $update['admin_numbers'] = implode(",", $valid_admin_numbers);
+
+
                                 //update query if no error
                                 if ($error == false) {
                                     update_query("sms_net_bd_templates", $update, "id = '" . $data['id'] . "'");
@@ -161,7 +172,7 @@
                         </table>
 
                         <div class="btn-container">
-                            <input type="submit" value="Save" class="btn btn-primary" tabindex="52" name="submit">
+                            <input type="submit" value="Save Changes" class="btn btn-primary" tabindex="52" name="submit">
                         </div>
                     </form>
 

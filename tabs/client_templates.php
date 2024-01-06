@@ -131,7 +131,7 @@
                         </table>
 
                         <div class="btn-container">
-                            <input type="submit" value="Save" class="btn btn-primary" tabindex="52" name="submit">
+                            <input type="submit" value="Save Changes" class="btn btn-primary" tabindex="52" name="submit">
                         </div>
                     </form>
 

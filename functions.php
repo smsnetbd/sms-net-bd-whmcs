@@ -153,10 +153,13 @@ class Functions
 
     public function validatePhoneNumber($phoneNumber)
     {
+
+        $trimmed = trim($phoneNumber);
+
         $pattern = '/^(?:\+?88)?01[3-9]\d{8}$/';
 
-        if (preg_match($pattern, $phoneNumber)) {
-            return true;
+        if (preg_match($pattern, $trimmed)) {
+            return $trimmed;
         } else {
             return false;
         }

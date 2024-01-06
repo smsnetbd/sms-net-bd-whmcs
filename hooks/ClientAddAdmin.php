@@ -21,7 +21,10 @@ if (!function_exists('ClientAddAdmin')) {
         if (empty($settings['api_key'])) {
             return null;
         }
-        $admin_numbers = explode(",", $template['admin_numbers']);
+
+        if (empty($template['admin_numbers'])) {
+            return null;
+        }
 
         $company_details = $class->getCompanyName();
 
@@ -30,14 +33,10 @@ if (!function_exists('ClientAddAdmin')) {
         $replaceto = array($company_details['CompanyName']);
         $template['content']   = str_replace($replacefrom, $replaceto, $template['content']);
 
-        foreach ($admin_numbers as $gsm) {
-            if (!empty($gsm)) {
-                $class->setNumber(trim($gsm));
-                $class->setUserid(0);
-                $class->setMessage($template['content']);
-                $class->send();
-            }
-        }
+        $class->setNumber($template['admin_numbers']);
+        $class->setUserid(0);
+        $class->setMessage($template['content']);
+        $class->send();
     }
 }
 return $hook;

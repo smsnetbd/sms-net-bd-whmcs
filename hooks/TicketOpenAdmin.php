@@ -24,21 +24,21 @@ if (!function_exists('TicketOpenAdmin')) {
             return null;
         }
 
-        $company_details = $class->getCompanyName();
+        if (empty($template['admin_numbers'])) {
+            return null;
+        }
 
-        $admin_numbers              = explode(",", $template['admin_numbers']);
+        $company_details = $class->getCompanyName();
         $template['variables'] = str_replace(" ", "", $template['variables']);
         $replacefrom           = explode(",", $template['variables']);
         $replaceto = array($args['subject'], $args['ticketmask'], $company_details['CompanyName']);
         $message               = str_replace($replacefrom, $replaceto, $template['content']);
-        foreach ($admin_numbers as $gsm) {
-            if (!empty($gsm)) {
-                $class->setNumber(trim($gsm));
-                $class->setUserid(0);
-                $class->setMessage($message);
-                $class->send();
-            }
-        }
+
+
+        $class->setNumber($template['admin_numbers']);
+        $class->setUserid(0);
+        $class->setMessage($message);
+        $class->send();
     }
 }
 

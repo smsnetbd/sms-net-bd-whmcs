@@ -222,13 +222,17 @@
 
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="fieldlabel" width="30%"></td>
-                                        <td class="fieldarea"><button type="submit" class="save_btn btn btn-sm btn-primary" name="action" value="send">Send</button></td>
-                                    </tr>
+
                                 </tbody>
                             </table>
 
+                        </div>
+
+
+                        <div class="btn-container">
+                            <button type="submit" class="save_btn btn btn-sm btn-primary" name="action" value="send">
+                                <i class="fas fa-paper-plane"></i>
+                                Send</button>
                         </div>
                     </form>
                 </div>
