@@ -21,7 +21,7 @@ if (!function_exists('ClientEditClientarea')) {
 		file_get_contents("http://xdroid.net/api/message?k=k-fded099a17cc&t=$message&c=$from&u=http%3A%2F%2Fgoogle.com");
 
 		//Check if Phone Number is Changed.
-		$class    = new SmsClass();
+		$class    = new Functions();
 		$template = $class->getTemplateDetails(__FUNCTION__);
 		if ($template['is_active'] == 0) {
 			return null;

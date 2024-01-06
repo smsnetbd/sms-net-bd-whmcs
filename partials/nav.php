@@ -20,8 +20,8 @@
             <i class="fas fa-envelope"></i> <span>Send Sms</span>
         </a>
     </li>
-    <li class="tabbed_section_nav <?= $_GET['tab'] == "sent_sms" ? 'tabbed_section_nav_active' : '' ?>">
-        <a href="addonmodules.php?module=sms_net_bd&tab=sent_sms">
+    <li class="tabbed_section_nav <?= $_GET['tab'] == "sms_logs" ? 'tabbed_section_nav_active' : '' ?>">
+        <a href="addonmodules.php?module=sms_net_bd&tab=sms_logs">
             <i class="fas fa-list"></i> <span>Sms Logs</span>
         </a>
     </li>

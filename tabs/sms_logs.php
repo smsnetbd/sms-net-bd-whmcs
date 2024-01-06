@@ -46,7 +46,7 @@
 
                             $status = $data['status'];
 
-                            $class = new SmsClass();
+                            $class = new Functions();
 
                             $settings = $class->getSettings();
 
@@ -54,7 +54,7 @@
 
                                 try {
 
-                                    $send = new Sender($settings['api_key']);
+                                    $send = new sms_net_bd($settings['api_key']);
 
                                     $resp = $send->getReport($data['req_id']);
 
@@ -125,7 +125,7 @@
 
 
 
-                                <td><a href="addonmodules.php?module=sms_net_bd&tab=sent_sms&deletesms=<?php echo $data['id']; ?>" title="Delete"><img src="images/delete.gif" width="16" height="16" border="0" alt="Delete"></a></td>
+                                <td><a href="addonmodules.php?module=sms_net_bd&tab=sms_logs&deletesms=<?php echo $data['id']; ?>" title="Delete"><img src="images/delete.gif" width="16" height="16" border="0" alt="Delete"></a></td>
                             </tr>
 
 
@@ -136,7 +136,7 @@
                         $list = "";
                         for ($a = 1; $a <= $sayfa; $a++) {
                             $selected = ($page == $a) ? 'selected="selected"' : '';
-                            $list .= "<option value='addonmodules.php?module=sms_net_bd&tab=sent_sms&page={$a}&limit={$limit}&order={$order}' {$selected}>{$a}</option>";
+                            $list .= "<option value='addonmodules.php?module=sms_net_bd&tab=sms_logs&page={$a}&limit={$limit}&order={$order}' {$selected}>{$a}</option>";
                         }
                         echo "<select  onchange=\"this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);\">{$list}</select></div>";
 

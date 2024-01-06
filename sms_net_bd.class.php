@@ -1,8 +1,6 @@
 <?php
 
-
-// TODO : rename the sender class
-class Sender
+class sms_net_bd
 {
     private $apiUrl = 'https://api.sms.net.bd';
     private $apiKey;

@@ -14,7 +14,7 @@ if (!function_exists('AfterModuleCreateHosting')) {
     {
         $type = $args['params']['producttype'];
         if ($type == "hostingaccount") {
-            $class    = new SmsClass();
+            $class    = new Functions();
             $template = $class->getTemplateDetails(__FUNCTION__);
             if ($template['is_active'] == 0) {
                 return null;

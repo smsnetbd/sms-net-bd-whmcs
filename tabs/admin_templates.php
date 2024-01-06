@@ -11,7 +11,7 @@
                     if ($_POST['submit']) {
 
                         try {
-                            $class = new SmsClass();
+                            $class = new Functions();
                             $where = ['user_type' => 'admin'];
                             $result = select_query("sms_net_bd_templates", "*", $where);
 

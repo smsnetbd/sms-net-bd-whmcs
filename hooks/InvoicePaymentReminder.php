@@ -13,7 +13,7 @@ if (!function_exists('InvoicePaymentReminder')) {
     function InvoicePaymentReminder($args)
     {
         if ($args['type'] == "reminder") {
-            $class    = new SmsClass();
+            $class    = new Functions();
             $template = $class->getTemplateDetails(__FUNCTION__);
             if ($template['is_active'] == 0) {
                 return null;

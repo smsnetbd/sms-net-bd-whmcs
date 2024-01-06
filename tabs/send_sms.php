@@ -167,7 +167,7 @@
                             showAlert("Client not selected", "danger");
                         } else {
 
-                            $class       = new SmsClass();
+                            $class       = new Functions();
 
                             $user_id = $_POST['userid'];
 

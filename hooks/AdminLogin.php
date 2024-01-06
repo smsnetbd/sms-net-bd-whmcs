@@ -12,7 +12,7 @@ if (!function_exists('AdminLoginAdmin')) {
     function AdminLoginAdmin($args)
     {
 
-        $class    = new SmsClass();
+        $class    = new Functions();
         $template = $class->getTemplateDetails(__FUNCTION__);
         if ($template['is_active'] == 0) {
             return null;

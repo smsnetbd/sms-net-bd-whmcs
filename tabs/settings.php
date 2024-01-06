@@ -21,7 +21,7 @@
 
                             if (!empty($_POST['api_key']) && !$condition) {
 
-                                $send = new Sender($_POST['api_key']);
+                                $send = new sms_net_bd($_POST['api_key']);
 
                                 $res = $send->getBalance();
 
@@ -49,7 +49,7 @@
                     }
 
 
-                    $class = new SmsClass();
+                    $class = new Functions();
 
                     $settings = $class->getSettings();
 
@@ -57,7 +57,7 @@
 
                     if (!empty($settings['api_key'])) {
 
-                        $send = new Sender($settings['api_key']);
+                        $send = new sms_net_bd($settings['api_key']);
 
                         $res = $send->getBalance();
 
@@ -79,7 +79,7 @@
 
                     try {
 
-                        $send = new Sender($settings['api_key']);
+                        $send = new sms_net_bd($settings['api_key']);
 
                         $res = $send->getSenderID();
 

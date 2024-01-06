@@ -13,7 +13,7 @@ $hook = array(
 if (!function_exists('AfterRegistrarRenewalAdmin')) {
     function AfterRegistrarRenewalAdmin($args)
     {
-        $class    = new SmsClass();
+        $class    = new Functions();
         $template = $class->getTemplateDetails(__FUNCTION__);
         if ($template['is_active'] == 0) {
             return null;

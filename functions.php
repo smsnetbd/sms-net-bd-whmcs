@@ -4,9 +4,9 @@ if (!defined("WHMCS")) {
     die("This file cannot be accessed directly");
 }
 
-require_once("sender.php");
+require_once("sms_net_bd.class.php");
 
-class SmsClass
+class Functions
 {
     public $gsmnumber;
     public $message;
@@ -167,7 +167,7 @@ class SmsClass
 
         $settings = $this->getSettings();
 
-        $send = new Sender($settings['api_key']);
+        $send = new sms_net_bd($settings['api_key']);
 
         try {
             $resp = $send->sendSMS(

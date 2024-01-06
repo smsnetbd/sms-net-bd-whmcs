@@ -9,7 +9,7 @@
  * @since      File available since Release 1.0
  */
 
-require_once("sms_class.php");
+require_once("functions.php");
 
 
 if (!defined("WHMCS"))
@@ -93,7 +93,7 @@ function sms_net_bd_activate()
 
     mysql_query($query);
 
-    $function = new SmsClass();
+    $function = new Functions();
     $function->checkHooks();
 
     return array('status' => 'success', 'description' => 'sms.net.bd successfully activated.');

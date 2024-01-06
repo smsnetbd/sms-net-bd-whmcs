@@ -4,8 +4,8 @@
 if (!defined("WHMCS"))
     die("This file cannot be accessed directly");
 
-require_once("sms_class.php");
-$class = new SmsClass();
+require_once("functions.php");
+$class = new Functions();
 $hooks = $class->getHooks();
 
 foreach ($hooks as $hook) {

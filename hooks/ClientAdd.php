@@ -14,7 +14,7 @@ if (!function_exists('ClientAddClientArea')) {
 
     function ClientAddClientArea($args)
     {
-        $class    = new SmsClass();
+        $class    = new Functions();
 
         $template = $class->getTemplateDetails(__FUNCTION__);
 
