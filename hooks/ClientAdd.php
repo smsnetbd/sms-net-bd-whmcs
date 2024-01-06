@@ -32,7 +32,7 @@ if (!function_exists('ClientAddClientArea')) {
 
         $result   = $class->getClientDetailsBy($args['userid']);
 
-        $company_details = $class->getCompanyDetails();
+        $company_details = $class->getCompanyName();
 
 
         $num_rows = mysql_num_rows($result);

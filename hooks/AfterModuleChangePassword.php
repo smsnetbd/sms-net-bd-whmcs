@@ -28,7 +28,7 @@ if (!function_exists('AfterModuleChangePassword')) {
             return null;
         }
         $result   = $class->getClientDetailsBy($args['params']['clientsdetails']['userid']);
-        $company_details = $class->getCompanyDetails();
+        $company_details = $class->getCompanyName();
 
         $num_rows = mysql_num_rows($result);
         if ($num_rows == 1) {

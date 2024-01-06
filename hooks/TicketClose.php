@@ -22,7 +22,7 @@ if (!function_exists('TicketClose')) {
             return null;
         }
 
-        $company_details = $class->getCompanyDetails();
+        $company_details = $class->getCompanyName();
 
         $userSql = "
         SELECT a.tid,b.id as userid,b.firstname,b.lastname,`b`.`country`,`b`.`phonenumber` as `gsmnumber` FROM `tbltickets` as `a`

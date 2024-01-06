@@ -22,7 +22,7 @@ if (!function_exists('TicketAdminReply')) {
             return null;
         }
 
-        $company_details = $class->getCompanyDetails();
+        $company_details = $class->getCompanyName();
 
         $userSql = "SELECT `a`.`id`,`a`.`firstname`, `a`.`lastname`, `a`.`phonenumber` as `gsmnumber`, `a`.`country`
         FROM `tblclients` as `a`

@@ -22,7 +22,7 @@ if (!function_exists('AfterRegistrarRegistrationAdmin')) {
             return null;
         }
 
-        $company_details = $class->getCompanyDetails();
+        $company_details = $class->getCompanyName();
 
         $admin_numbers              = explode(",", $template['admin_numbers']);
         $template['variables'] = str_replace(" ", "", $template['variables']);

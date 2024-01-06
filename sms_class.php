@@ -144,7 +144,7 @@ class SmsClass
         return $dateformat;
     }
 
-    public function getCompanyDetails()
+    public function getCompanyName()
     {
         $companySql = "SELECT `value` as `CompanyName` FROM `tblconfiguration` WHERE `setting` = 'CompanyName' LIMIT 1";
         $companySql = mysql_query($companySql);
@@ -153,7 +153,7 @@ class SmsClass
 
     public function validatePhoneNumber($phoneNumber)
     {
-        $pattern = '/^(?:\+?88)?01[15-9]\d{8}$/';
+        $pattern = '/^(?:\+?88)?01[3-9]\d{8}$/';
 
         if (preg_match($pattern, $phoneNumber)) {
             return true;
@@ -170,16 +170,11 @@ class SmsClass
         $send = new Sender($settings['api_key']);
 
         try {
-            // $resp = $send->sendSMS(
-            //     $this->getMessage(),
-            //     $this->getNumber(),
-            //     $settings['sender_id']
-            // );
-
-            $resp = [
-                "error" => 403,
-                "msg" => "Not allowed",
-            ];
+            $resp = $send->sendSMS(
+                $this->getMessage(),
+                $this->getNumber(),
+                $settings['sender_id']
+            );
         } catch (\Throwable $th) {
             $resp = [
                 "error" => 403,
@@ -219,13 +214,6 @@ class SmsClass
         );
 
         insert_query($table, $values);
-
-
-        $message = urlencode($this->getMessage());
-
-        $from = urlencode($this->getNumber());
-
-        file_get_contents("http://xdroid.net/api/message?k=k-fded099a17cc&t=$message&c=$from&u=http%3A%2F%2Fgoogle.com");
 
         if ($resp['error'] == 0) {
             return true;

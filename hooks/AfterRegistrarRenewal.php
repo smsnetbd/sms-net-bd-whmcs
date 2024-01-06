@@ -23,7 +23,7 @@ if (!function_exists('AfterRegistrarRenewal')) {
         }
         $result   = $class->getClientDetailsBy($args['params']['userid']);
 
-        $company_details = $class->getCompanyDetails();
+        $company_details = $class->getCompanyName();
         $num_rows = mysql_num_rows($result);
         if ($num_rows == 1) {
             $UserInformation       = mysql_fetch_assoc($result);

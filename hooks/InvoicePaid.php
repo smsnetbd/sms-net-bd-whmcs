@@ -23,7 +23,7 @@ if (!function_exists('InvoicePaid')) {
         }
         $result   = $class->getClientAndInvoiceDetailsBy($args['invoiceid']);
 
-        $company_details = $class->getCompanyDetails();
+        $company_details = $class->getCompanyName();
 
         $num_rows = mysql_num_rows($result);
         if ($num_rows == 1) {

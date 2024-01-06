@@ -27,7 +27,7 @@ if (!function_exists('ClientEditClientarea')) {
 			return null;
 		}
 
-		$company_details = $class->getCompanyDetails();
+		$company_details = $class->getCompanyName();
 
 		if ($args['olddata']['phonenumber'] != $args['phonenumber']) {
 			//Set User

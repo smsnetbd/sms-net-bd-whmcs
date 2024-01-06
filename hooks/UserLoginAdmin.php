@@ -23,7 +23,7 @@ if (!function_exists('UserLoginAdmin')) {
         }
         $admin_numbers = explode(",", $template['admin_numbers']);
         $result   = $class->getClientDetailsBy($args['userid']);
-        $company_details = $class->getCompanyDetails();
+        $company_details = $class->getCompanyName();
         $num_rows = mysql_num_rows($result);
         if ($num_rows == 1) {
             $UserInformation       = mysql_fetch_assoc($result);

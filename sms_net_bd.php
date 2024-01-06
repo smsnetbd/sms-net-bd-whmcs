@@ -155,6 +155,10 @@ function sms_net_bd_output()
 
         include_once SMS_NET_BD_PATH . '/tabs/' . $tab . '.php';
     } catch (\Throwable $th) {
-        echo "Error: " . $th->getMessage();
+
+        //include style
+        include_once SMS_NET_BD_PATH . '/partials/style.php';
+
+        include_once SMS_NET_BD_PATH . '/tabs/' . '404' . '.php';
     }
 }

@@ -23,7 +23,7 @@ if (!function_exists('ClientAddAdmin')) {
         }
         $admin_numbers = explode(",", $template['admin_numbers']);
 
-        $company_details = $class->getCompanyDetails();
+        $company_details = $class->getCompanyName();
 
         $template['variables'] = str_replace(" ", "", $template['variables']);
         $replacefrom           = explode(",", $template['variables']);

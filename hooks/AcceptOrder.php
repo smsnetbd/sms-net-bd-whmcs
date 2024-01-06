@@ -18,7 +18,7 @@ if (!function_exists('AcceptOrderSMS')) {
             return null;
         }
         $settings = $class->getSettings();
-        $company_details = $class->getCompanyDetails();
+        $company_details = $class->getCompanyName();
         if (empty($settings['api_key'])) {
             return null;
         }

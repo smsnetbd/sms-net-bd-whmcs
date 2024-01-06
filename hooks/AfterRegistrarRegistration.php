@@ -22,7 +22,7 @@ if (!function_exists('AfterRegistrarRegistration')) {
             return null;
         }
         $result = $class->getClientDetailsBy($args['params']['userid']);
-        $company_details = $class->getCompanyDetails();
+        $company_details = $class->getCompanyName();
 
 
         $num_rows = mysql_num_rows($result);

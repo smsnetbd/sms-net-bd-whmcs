@@ -85,6 +85,14 @@
         max-width: 300px;
     }
 
+    .sms_net_bd_wrapper .error {
+        text-align: center;
+        padding: 20px;
+        border: 1px solid #cacaca;
+        border-radius: 5px;
+        margin: 20px 0px;
+    }
+
     .social-links a {
         color: #2f353b;
         margin: 0px 2px;
