@@ -89,14 +89,14 @@ function sms_net_bd_activate()
     mysql_query($query);
 
     $query = "INSERT INTO `sms_net_bd_settings` (`id`, `api_key`, `sender_id`, `version`) VALUES
-    (1, '', '', 'v1')";
+    (1, '', '', '1.0.0')";
 
     mysql_query($query);
 
     $function = new SmsClass();
     $function->checkHooks();
 
-    return array('status' => 'success', 'description' => 'Sms.Net.BD successfully activated :)');
+    return array('status' => 'success', 'description' => 'Sms.Net.BD successfully activated.');
 }
 
 function sms_net_bd_deactivate()
@@ -113,7 +113,7 @@ function sms_net_bd_deactivate()
     $query = "DROP TABLE IF EXISTS `sms_net_bd_otp`";
     mysql_query($query);
 
-    return array('status' => 'success', 'description' => 'Sms.Net.BD successfully deactivated :(');
+    return array('status' => 'success', 'description' => 'Sms.Net.BD successfully deactivated.');
 }
 
 function sms_net_bd_upgrade()
