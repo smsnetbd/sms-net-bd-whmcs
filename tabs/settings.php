@@ -171,7 +171,7 @@
                                         <td></td>
 
                                         <td class="fieldarea">
-                                            <?= "Don't have an account? <a class='text-primary' href='https://alpha.net.bd/SMS/SignUp/'>Register Now</a> (Free SMS Credit after Sign-up)." ?>
+                                            <?= "Don't have an account? <a class='text-primary' href='https://www.sms.net.bd/signup/'>Register Now</a> (Free SMS Credit after Sign-up)." ?>
                                         </td>
                                     </tr>
                                 <?php endif; ?>
