@@ -41,7 +41,7 @@ The WHMCS SMS Notification Module for **sms.net.bd** is a powerful and versatile
 
 ## Installation
 
-1. **Download and Extract:** Download and unzip file in WHMCS directory/modules/addons
+1. **Download and Extract:** Download and unzip file in WHMCS `directory/modules/addons`
 2. **Configuration:** Configure the module settings in the WHMCS admin panel, providing the SMS API key for **sms.net.bd**.
 3. **Activate Hooks:** Activate the desired hooks within the WHMCS admin panel to trigger SMS notifications for specific events.
 
