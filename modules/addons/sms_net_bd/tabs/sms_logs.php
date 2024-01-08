@@ -29,6 +29,8 @@
 
                             try {
                                 $id = $_GET['deletesms'];
+                                // convert to int
+                                $id = (int) $id;
 
                                 $sql = "DELETE FROM `sms_net_bd_messages` WHERE `id` = {$id}";
 
@@ -94,10 +96,10 @@
 
                         //Page calculation
                         $sayfa  = ceil($toplam / $limit);
-
+                        $empty = true;
 
                         while ($data = mysql_fetch_array($result)) {
-
+                            $empty = false;
 
                             $i++;
 
@@ -123,14 +125,15 @@
                                 <td><?php echo getStatus($data) ?></td>
                                 <td><?php echo $log; ?></td>
 
-
-
                                 <td><a href="addonmodules.php?module=sms_net_bd&tab=sms_logs&deletesms=<?php echo $data['id']; ?>" title="Delete"><img src="images/delete.gif" width="16" height="16" border="0" alt="Delete"></a></td>
                             </tr>
 
 
                         <?php
 
+                        }
+                        if ($empty) {
+                            echo "<tr><td colspan='8' class='text-center'>No records found</td></tr>";
                         }
 
                         $list = "";

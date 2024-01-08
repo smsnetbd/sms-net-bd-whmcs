@@ -76,18 +76,6 @@ function sms_net_bd_activate()
 
     mysql_query($query);
 
-
-    $query = "CREATE TABLE IF NOT EXISTS `sms_net_bd_otp`(
-        `id` INT NOT NULL AUTO_INCREMENT,
-        `client_id` VARCHAR(11) NOT NULL,
-        `phone_number` VARCHAR(20) NOT NULL,
-        `status` TINYINT NULL,
-        PRIMARY KEY (`id`)
-    )";
-
-
-    mysql_query($query);
-
     $query = "INSERT INTO `sms_net_bd_settings` (`id`, `api_key`, `sender_id`, `version`) VALUES
     (1, '', '', '1.0.0')";
 

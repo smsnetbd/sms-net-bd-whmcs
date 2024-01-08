@@ -82,7 +82,7 @@
         display: flex;
         justify-content: center;
         margin-top: 10px;
-        max-width: 300px;
+        gap: 10px;
     }
 
     .sms_net_bd_wrapper .error {
@@ -96,19 +96,17 @@
     .social-links a {
         color: #2f353b;
         margin: 0px 2px;
-        width: 25px;
-        height: 25px;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         border-radius: 20px;
-        font-size: 16px;
+        font-size: 24px;
         text-decoration: none;
     }
 
-    .social-links a:hover {
-        background: #2f353b;
-        color: #fff;
+    .social-links a span {
+        font-size: 12px;
     }
 
     /* billow 600 px screen */

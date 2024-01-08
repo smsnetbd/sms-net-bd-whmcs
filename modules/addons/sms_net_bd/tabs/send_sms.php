@@ -157,13 +157,22 @@
 
                     <?php
 
+                    use WHMCS\Database\Capsule;
+
+
                     if (!empty($_POST['action'] && $_POST['action'] == "send")) {
 
+                        // check api key
+                        $settings = Capsule::table('sms_net_bd_settings')->where('id', '1')->first();
 
-                        //if empty message
-                        if (empty($_POST['message'])) {
+                        if (empty($settings->api_key)) {
+
+                            showAlert("API Key not found", "danger");
+                        } else if (empty($_POST['message'])) {
+
                             showAlert("Message is empty", "danger");
                         } elseif (empty($_POST['userid'])) {
+
                             showAlert("Client not selected", "danger");
                         } else {
 
@@ -171,25 +180,54 @@
 
                             $user_id = $_POST['userid'];
 
-                            $userSql = "SELECT `a`.`id`,`a`.`firstname`, `a`.`lastname`, `a`.`country`, `a`.`phonenumber` as `gsmnumber`
-                                                                FROM `tblclients` as `a` where `a`.`id` = $user_id order by `a`.`firstname`";
-                            $result      = mysql_query($userSql);
-                            $data        = mysql_fetch_array($result);
-                            $userid      = $data['id'];
-                            $gsmnumber   = $data['gsmnumber'];
-                            $replacefrom = array("{firstname}", "{lastname}");
-                            $replaceto = array($data['firstname'], $data['lastname'], $company_details['CompanyName']);
-                            $message     = str_replace($replacefrom, $replaceto, $_POST['message']);
-                            $class->setNumber($gsmnumber);
-                            $class->setMessage($message);
-                            $class->setUserid($userid);
+                            // check if user is *
+                            if ($user_id == '*') {
+                                foreach (Capsule::table('tblclients')->get() as $client) {
 
-                            $result = $class->send();
+                                    $class->setNumber($client->phonenumber);
 
-                            if (!$result) {
-                                showAlert("Message sending failed", "danger");
+                                    $number = $class->validatePhoneNumber($class->getNumber());
+
+                                    if (!$number) {
+                                        continue;
+                                    }
+
+                                    $replacefrom = array("{firstname}", "{lastname}");
+                                    $replaceto = array($client->firstname, $client->lastname);
+                                    $message     = str_replace($replacefrom, $replaceto, $_POST['message']);
+                                    $class->setNumber($number);
+                                    $class->setMessage($message);
+                                    $class->setUserid($userid);
+
+                                    $result = $class->send();
+                                }
+
+                                showAlert("Message sent successfully, check sms logs.", "success");
                             } else {
-                                showAlert("Message sent successfully", "success");
+                                $client = Capsule::table('tblclients')->where('id', $user_id)->first();
+
+                                $number = $class->validatePhoneNumber($client->phonenumber);
+
+                                if (!$number) {
+
+                                    showAlert("Invalid phone number", "danger");
+                                } else {
+
+                                    $replacefrom = array("{firstname}", "{lastname}");
+                                    $replaceto = array($client->firstname, $client->lastname);
+                                    $message     = str_replace($replacefrom, $replaceto, $_POST['message']);
+                                    $class->setNumber($number);
+                                    $class->setMessage($message);
+                                    $class->setUserid($userid);
+
+                                    $result = $class->send();
+
+                                    if (!$result) {
+                                        showAlert("Message sending failed, check sms logs.", "danger");
+                                    } else {
+                                        showAlert("Message sent successfully", "success");
+                                    }
+                                }
                             }
                         }
                     }
@@ -205,6 +243,7 @@
                                         <td class="fieldlabel" width="30%">Client</td>
                                         <td class="fieldarea">
                                             <select id="selectUserid" name="userid" class="form-control selectize selectize-client-search" data-value-field="id" data-active-label="Active" data-inactive-label="Inactive" placeholder="Start Typing to Search Clients" required>
+                                                <option value="*" selected>All Clients</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -218,8 +257,7 @@
                                     <tr>
                                         <td class="fieldlabel" width="30%">Parameters :</td>
                                         <td class="fieldarea">
-                                            {firstname},{lastname}<br>
-
+                                            {firstname}, {lastname}<br>
                                         </td>
                                     </tr>
 
@@ -230,7 +268,7 @@
 
 
                         <div class="btn-container">
-                            <button type="submit" class="save_btn btn btn-sm btn-primary" name="action" value="send">
+                            <button type="submit" class="save_btn btn btn-primary" name="action" value="send" style="min-width: 115px;">
                                 <i class="fas fa-paper-plane"></i>
                                 Send</button>
                         </div>

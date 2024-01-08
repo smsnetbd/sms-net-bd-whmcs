@@ -1,0 +1,48 @@
+{
+  "schema": "1.0",
+  "type": "whmcs-addons",
+  "name": "sms.net.bd",
+  "license": "proprietary",
+  "category": "notifications",
+  "description": {
+    "name": "SMS.NET.BD - SMS Notification Plugin for WHMCS",
+    "tagline": "Send Notifications to customers using sms.net.bd Gateway",
+    "long": "The WHMCS SMS notification plugin for WHMCS is very useful, when you want to get notified via SMS after placing an order. Buyer and seller both can get SMS notification after an order is placed. SMS notification options can be customized in the admin panel very easily.",
+    "features": [
+      "Notify clients when their orders are accepted",
+      "Keep administrators informed about successful logins",
+      "Inform clients of any changes to their hosting packages",
+      "Notify clients after a change in their hosting account password",
+      "Welcome a user, password change, upgrade, suspension or more",
+      "Send messages when a new hosting account is created",
+      "Alert clients when their hosting account is suspended",
+      "Inform clients of successful domain registrations",
+      "Alert administrators about failed domain registrations",
+      "Welcome new clients with an introductory SMS message",
+      "Notify administrators when a new client is added",
+      "Send SMS confirmations for client registrations",
+      "Security hack attempts and more"
+    ]
+  },
+  "logo": {
+    "filename": "sms.net.bd.png"
+  },
+  "support": {
+    "homepage": "https://sms.net.bd",
+    "support_url": "https://sms.net.bd/contact"
+  },
+  "authors": [
+    {
+      "name": "sms.net.bd",
+      "homepage": "https://sms.net.bd"
+    }
+  ],
+  "keywords": [
+    "sms",
+    "notification",
+    "sms.net.bd",
+    "sms.net",
+    "marketing",
+    "bulk-sms"
+  ]
+}

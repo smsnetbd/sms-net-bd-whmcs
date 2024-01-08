@@ -67,7 +67,7 @@ class Functions
                         "variables"   => $hook['variables'],
                         "extra_info"       => $hook['extra'],
                         "description" => $hook['description'],
-                        "is_active"      => 1
+                        "is_active"      => 0
                     );
                     insert_query("sms_net_bd_templates", $values);
                     $i++;
@@ -184,8 +184,6 @@ class Functions
                 "msg" => $th->getMessage()
             ];
         }
-
-
 
         $table  = "sms_net_bd_messages";
 
