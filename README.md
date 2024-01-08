@@ -7,7 +7,7 @@ The WHMCS SMS Notification Module for **sms.net.bd** is a powerful and versatile
 ## Prerequisites
 
 - WHMCS 8.0 or later
-- sms.net.bd account
+- sms.net.bd [account](https://sms.net.bd/signup)
 
 ## Installation
 
