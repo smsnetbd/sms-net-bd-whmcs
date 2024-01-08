@@ -1,5 +1,3 @@
-Certainly! Here's the text with the italicized content converted to bold:
-
 # WHMCS SMS Notification Module for sms.net.bd 
 
 ## Overview
