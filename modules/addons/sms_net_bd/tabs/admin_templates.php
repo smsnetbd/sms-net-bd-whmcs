@@ -184,6 +184,17 @@
 </div>
 
 <script>
+
+    function togglecheckbox(obj) {
+        var id = parseInt($(obj).attr('name').split('_')[0], 10);
+
+        if ($(obj).is(':checked')) {
+            $("#" + id + "_check").prop("readonly", false);
+        } else {
+            $("#" + id + "_check").prop("readonly", true);
+        }
+    }
+
     function insertToken(obj) {
         var dataToken = $(obj).attr('data-token');
         var id = parseInt($(obj).parent('td').attr('class').split('_')[0], 10);
