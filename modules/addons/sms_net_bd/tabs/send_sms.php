@@ -206,7 +206,9 @@
                             } else {
                                 $client = Capsule::table('tblclients')->where('id', $user_id)->first();
 
-                                $number = $class->validatePhoneNumber($client->phonenumber);
+                                $class->setNumber($client->phonenumber);
+
+                                $number = $class->validatePhoneNumber($class->getNumber());
 
                                 if (!$number) {
 
