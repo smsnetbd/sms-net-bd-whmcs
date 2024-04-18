@@ -4,7 +4,7 @@
  * sms.net.bd
  *
  * @package    sms.net.bd
- * @version    1.0.0
+ * @version    1.0.1
  * @link       https://www.sms.net.bd
  * @since      File available since Release 1.0
  */
@@ -23,7 +23,7 @@ function sms_net_bd_config()
     $configarray = array(
         "name"        => "sms.net.bd",
         "description" => "WHMCS SMS Addon. You can see details from : https://www.sms.net.bd",
-        "version"     => "1.0.0",
+        "version"     => "1.0.1",
         "author"      => "sms.net.bd",
         "language"    => "english",
     );

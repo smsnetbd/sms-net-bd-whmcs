@@ -33,6 +33,11 @@ if (!function_exists('TicketUserReplyAdmin')) {
 
         foreach ($admin_numbers as $gsm) {
             if (!empty($gsm)) {
+
+                if (!$class->validatePhoneNumber($gsm)) {
+                    continue;
+                }
+
                 $class->setNumber(trim($gsm));
                 $class->setUserid(0);
                 $class->setMessage($message);

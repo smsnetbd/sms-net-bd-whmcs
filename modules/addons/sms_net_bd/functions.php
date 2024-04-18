@@ -153,6 +153,7 @@ class Functions
 
     public function validatePhoneNumber($phoneNumber)
     {
+        $phoneNumber = preg_replace('/[^0-9+]/', '', $phoneNumber);
 
         $trimmed = trim($phoneNumber);
 

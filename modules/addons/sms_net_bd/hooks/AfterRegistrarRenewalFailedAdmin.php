@@ -30,6 +30,11 @@ if (!function_exists('AfterRegistrarRenewalFailedAdmin')) {
         $message               = str_replace($replacefrom, $replaceto, $template['content']);
         foreach ($admin_numbers as $gsm) {
             if (!empty($gsm)) {
+
+                if (!$class->validatePhoneNumber($gsm)) {
+                    continue;
+                }
+
                 $class->setNumber(trim($gsm));
                 $class->setUserid(0);
                 $class->setMessage($message);
