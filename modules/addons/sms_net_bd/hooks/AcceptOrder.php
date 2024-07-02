@@ -23,25 +23,18 @@ if (!function_exists('AcceptOrderSMS')) {
             return null;
         }
 
-
-        $userSql = "SELECT `a`.`id`,`a`.`firstname`, `a`.`lastname`, `a`.`phonenumber` as `gsmnumber`, `a`.`country`
-        FROM `tblclients` as `a`
-        WHERE `a`.`id` IN (SELECT userid FROM tblorders WHERE id = '" . $args['orderid'] . "')
-        LIMIT 1";
+        $order_id = $args['orderid'];
+        $userSql  = "SELECT id, firstname, lastname, phonenumber as gsmnumber, country FROM `tblclients` WHERE id IN (SELECT userid FROM tblorders WHERE id = '$order_id')";
 
         $result   = mysql_query($userSql);
         $num_rows = mysql_num_rows($result);
 
-        //if country is not bd then return
         if ($num_rows == 1) {
             $UserInformation       = mysql_fetch_assoc($result);
+
             if ($UserInformation['country'] != 'BD') {
                 return null;
             }
-        }
-
-        if ($num_rows == 1) {
-            $UserInformation       = mysql_fetch_assoc($result);
 
             if (!$class->validatePhoneNumber($UserInformation['gsmnumber'])) {
                 return null;
