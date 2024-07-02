@@ -1,7 +1,7 @@
 <?php
 
 $hook = array(
-    'hook'           => 'ClientChangePassword',
+    'hook'           => 'UserChangePassword',
     'function'       => 'ClientChangePassword',
     'description' => 'After client change password',
     'type'           => 'client',
