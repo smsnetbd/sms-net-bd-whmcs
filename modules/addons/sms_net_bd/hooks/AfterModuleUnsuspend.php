@@ -21,7 +21,7 @@ if (!function_exists('AfterModuleUnsuspend')) {
             }
             $settings = $class->getSettings();
             if (empty($settings['api_key'])) {
-                logActivity('Hook Error: ' . 'No API Key Provided', 0);
+                logActivity('sms.net.bd - module :  ' . 'No API Key Provided', 0);
                 return null;
             }
         } else {
@@ -35,7 +35,7 @@ if (!function_exists('AfterModuleUnsuspend')) {
             $UserInformation       = mysql_fetch_assoc($result);
 
             if (!$class->validatePhoneNumber($UserInformation['gsmnumber'])) {
-                logActivity('Hook Error: ' . 'Invalid phone number Provided', 0);
+                logActivity('sms.net.bd - module :  ' . 'Invalid phone number Provided', 0);
                 return null;
             }
 

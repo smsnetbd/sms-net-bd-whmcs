@@ -19,7 +19,7 @@ if (!function_exists('AfterRegistrarRegistrationAdmin')) {
         }
         $settings = $class->getSettings();
         if (empty($settings['api_key'])) {
-            logActivity('Hook Error: ' . 'No API Key Provided', 0);
+            logActivity('sms.net.bd - module :  ' . 'No API Key Provided', 0);
             return null;
         }
 
@@ -34,7 +34,7 @@ if (!function_exists('AfterRegistrarRegistrationAdmin')) {
             if (!empty($gsm)) {
 
                 if (!$class->validatePhoneNumber($gsm)) {
-                    logActivity('Hook Error: ' . 'Invalid phone number Provided', 0);
+                    logActivity('sms.net.bd - module :  ' . 'Invalid phone number Provided', 0);
                     continue;
                 }
 
