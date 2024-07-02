@@ -20,6 +20,7 @@ if (!function_exists('InvoicePaymentReminderSecondoverdue')) {
             }
             $settings = $class->getSettings();
             if (empty($settings['api_key'])) {
+                logActivity('Hook Error: ' . 'No API Key Provided', 0);
                 return null;
             }
         } else {
@@ -32,6 +33,7 @@ if (!function_exists('InvoicePaymentReminderSecondoverdue')) {
             $UserInformation       = mysql_fetch_assoc($result);
 
             if (!$class->validatePhoneNumber($UserInformation['gsmnumber'])) {
+                logActivity('Hook Error: ' . 'Invalid phone number Provided', 0);
                 return null;
             }
 

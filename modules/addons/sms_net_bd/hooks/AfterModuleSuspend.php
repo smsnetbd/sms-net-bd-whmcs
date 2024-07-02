@@ -21,6 +21,7 @@ if (!function_exists('AfterModuleSuspend')) {
             }
             $settings = $class->getSettings();
             if (empty($settings['api_key'])) {
+                logActivity('Hook Error: ' . 'No API Key Provided', 0);
                 return null;
             }
         } else {
@@ -34,6 +35,7 @@ if (!function_exists('AfterModuleSuspend')) {
             $UserInformation       = mysql_fetch_assoc($result);
 
             if (!$class->validatePhoneNumber($UserInformation['gsmnumber'])) {
+                logActivity('Hook Error: ' . 'Invalid phone number Provided', 0);
                 return null;
             }
 

