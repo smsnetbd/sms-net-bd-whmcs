@@ -5,32 +5,33 @@ $hook = array(
     'description' => 'After module unsuspend',
     'type'           => 'client',
     'extra'          => '',
-    'defaultmessage' => 'Hello! The services for the domain {domain} have now been made active.',
-    'variables' => '{firstname},{lastname},{domain},{company}'
+    'defaultmessage' => 'Hello! The services {product} have now been made active.',
+    'variables' => '{firstname},{lastname},{product},{domain},{company}'
 );
 
 if (!function_exists('AfterModuleUnsuspend')) {
     function AfterModuleUnsuspend($args)
     {
-        $type = $args['params']['producttype'];
-        if ($type == "hostingaccount") {
-            $class    = new Functions();
-            $template = $class->getTemplateDetails(__FUNCTION__);
-            if ($template['is_active'] == 0) {
-                return null;
-            }
-            $settings = $class->getSettings();
-            if (empty($settings['api_key'])) {
-                logActivity('sms.net.bd - AfterModuleUnsuspend :  ' . 'No API Key Provided', 0);
-                return null;
-            }
-        } else {
+     
+        $class    = new Functions();
+        $template = $class->getTemplateDetails(__FUNCTION__);
+        if ($template['is_active'] == 0) {
             return null;
         }
-        $result = $class->getClientDetailsBy($args['params']['clientsdetails']['userid']);
-        $company_details = $class->getCompanyName();
 
+        $settings = $class->getSettings();
+
+        if (empty($settings['api_key'])) {
+            logActivity('sms.net.bd - AfterModuleUnsuspend :  ' . 'No API Key Provided', 0);
+            return null;
+        }
+
+        $result = $class->getClientDetailsBy($args['params']['clientsdetails']['userid']);
+
+        $company_details = $class->getCompanyName();
+        
         $num_rows = mysql_num_rows($result);
+
         if ($num_rows == 1) {
             $UserInformation       = mysql_fetch_assoc($result);
 
@@ -41,7 +42,7 @@ if (!function_exists('AfterModuleUnsuspend')) {
 
             $template['variables'] = str_replace(" ", "", $template['variables']);
             $replacefrom           = explode(",", $template['variables']);
-            $replaceto = array($UserInformation['firstname'], $UserInformation['lastname'], $args['params']['domain'], $company_details['CompanyName']);
+            $replaceto = array($UserInformation['firstname'], $UserInformation['lastname'], $args['params']['model']['product']['name'], $args['params']['domain'], $company_details['CompanyName']);
             $message               = str_replace($replacefrom, $replaceto, $template['content']);
             $class->setNumber($UserInformation['gsmnumber']);
             $class->setUserid($args['params']['clientsdetails']['userid']);
@@ -54,4 +55,5 @@ if (!function_exists('AfterModuleUnsuspend')) {
         }
     }
 }
+
 return $hook;
