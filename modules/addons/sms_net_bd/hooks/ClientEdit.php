@@ -33,7 +33,7 @@ if (!function_exists('ClientEditClientarea')) {
 			$client       = mysql_fetch_array($client_query);
 
 			if (!$class->validatePhoneNumber($client['gsmnumber'])) {
-				logActivity('sms.net.bd - module :  ' . 'Invalid phone number Provided', 0);
+				logActivity('sms.net.bd - ClientEditClientarea :  ' . 'Invalid phone number Provided', 0);
 				return null;
 			}
 

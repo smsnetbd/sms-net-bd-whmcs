@@ -21,7 +21,7 @@ if (!function_exists('AfterModuleChangePackage')) {
             }
             $settings = $class->getSettings();
             if (empty($settings['api_key'])) {
-                logActivity('sms.net.bd - module :  ' . 'No API Key Provided', 0);
+                logActivity('sms.net.bd - AfterModuleChangePackage :  ' . 'No API Key Provided', 0);
                 return null;
             }
         } else {
@@ -36,7 +36,7 @@ if (!function_exists('AfterModuleChangePackage')) {
             $UserInformation       = mysql_fetch_assoc($result);
 
             if (!$class->validatePhoneNumber($UserInformation['gsmnumber'])) {
-                logActivity('sms.net.bd - module :  ' . 'Invalid phone number Provided', 0);
+                logActivity('sms.net.bd - AfterModuleChangePackage :  ' . 'Invalid phone number Provided', 0);
                 return null;
             }
             $template['variables'] = str_replace(" ", "", $template['variables']);

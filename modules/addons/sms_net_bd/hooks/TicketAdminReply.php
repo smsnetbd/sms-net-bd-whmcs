@@ -19,7 +19,7 @@ if (!function_exists('TicketAdminReply')) {
         }
         $settings = $class->getSettings();
         if (empty($settings['api_key'])) {
-            logActivity('sms.net.bd - module :  ' . 'No API Key Provided', 0);
+            logActivity('sms.net.bd - TicketAdminReply :  ' . 'No API Key Provided', 0);
             return null;
         }
 
@@ -36,7 +36,7 @@ if (!function_exists('TicketAdminReply')) {
             $UserInformation       = mysql_fetch_assoc($result);
 
             if (!$class->validatePhoneNumber($UserInformation['gsmnumber'])) {
-                logActivity('sms.net.bd - module :  ' . 'Invalid phone number Provided', 0);
+                logActivity('sms.net.bd - TicketAdminReply :  ' . 'Invalid phone number Provided', 0);
                 return null;
             }
 

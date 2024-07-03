@@ -19,7 +19,7 @@ if (!function_exists('UserLoginAdmin')) {
         }
         $settings = $class->getSettings();
         if (empty($settings['api_key'])) {
-            logActivity('sms.net.bd - module :  ' . 'No API Key Provided', 0);
+            logActivity('sms.net.bd - UserLoginAdmin :  ' . 'No API Key Provided', 0);
             return null;
         }
         $admin_numbers = explode(",", $template['admin_numbers']);
@@ -36,7 +36,7 @@ if (!function_exists('UserLoginAdmin')) {
                 if (!empty($gsm)) {
 
                     if (!$class->validatePhoneNumber($gsm)) {
-                       logActivity('sms.net.bd - module :  ' . 'Invalid phone number Provided', 0);
+                       logActivity('sms.net.bd - UserLoginAdmin :  ' . 'Invalid phone number Provided', 0);
                        continue;
                     }
 

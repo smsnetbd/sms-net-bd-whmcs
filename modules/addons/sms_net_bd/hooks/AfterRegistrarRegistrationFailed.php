@@ -18,7 +18,7 @@ if (!function_exists('AfterRegistrarRegistrationFailed')) {
         }
         $settings = $class->getSettings();
         if (empty($settings['api_key'])) {
-            logActivity('sms.net.bd - module :  ' . 'No API Key Provided', 0);
+            logActivity('sms.net.bd - AfterRegistrarRegistrationFailed :  ' . 'No API Key Provided', 0);
             return null;
         }
         $result   = $class->getClientDetailsBy($args['params']['userid']);
@@ -30,7 +30,7 @@ if (!function_exists('AfterRegistrarRegistrationFailed')) {
             $UserInformation       = mysql_fetch_assoc($result);
 
             if (!$class->validatePhoneNumber($UserInformation['gsmnumber'])) {
-                logActivity('sms.net.bd - module :  ' . 'Invalid phone number Provided', 0);
+                logActivity('sms.net.bd - AfterRegistrarRegistrationFailed :  ' . 'Invalid phone number Provided', 0);
                 return null;
             }
 
