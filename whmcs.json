@@ -1,5 +1,5 @@
 {
-  "schema": "1.0",
+  "schema": "1.0.3",
   "type": "whmcs-addons",
   "name": "sms.net.bd",
   "license": "proprietary",
