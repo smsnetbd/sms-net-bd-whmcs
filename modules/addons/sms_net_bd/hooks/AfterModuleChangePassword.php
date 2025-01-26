@@ -1,56 +1,65 @@
 <?php
-
 $hook = array(
     'hook'           => 'AfterModuleChangePassword',
     'function'       => 'AfterModuleChangePassword',
-    'description' => 'After module password changed',
+    'description'    => 'After module password changed',
     'type'           => 'client',
     'extra'          => '',
-    'defaultmessage' => 'Hi {firstname} {lastname},password for the {domain} has been changed successfully.Here are the details- Username: {username} Password: {password}.',
-    'variables' => '{firstname},{lastname},{domain},{username},{password},{company}'
+    'defaultmessage' => 'Hi {firstname} {lastname}, the password for {domain} has been changed. New password: {newpassword}.',
+    'variables'      => '{firstname},{lastname},{domain},{username},{newpassword},{company}'
 );
 
 if (!function_exists('AfterModuleChangePassword')) {
-    function AfterModuleChangePassword($args)
-    {
-        $type = $args['params']['producttype'];
-        if ($type == "hostingaccount") {
-            $class    = new Functions();
-            $template = $class->getTemplateDetails(__FUNCTION__);
-            if ($template['is_active'] == 0) {
-                return null;
-            }
-            $settings = $class->getSettings();
-            if (empty($settings['api_key'])) {
-                logActivity('sms.net.bd - AfterModuleChangePassword :  ' . 'No API Key Provided', 0);
-                return null;
-            }
-        } else {
+    function AfterModuleChangePassword($args) {
+        // Extract hook parameters
+        $serviceId = $args['serviceid']; // From hook
+        $newPassword = $args['newpassword']; // From hook
+
+        // Fetch service details (domain, username, clientid) using serviceid
+        $serviceQuery = mysql_query("SELECT domain, username, userid AS clientid FROM tblhosting WHERE id = '$serviceId'");
+        if (mysql_num_rows($serviceQuery) == 0) {
+            logActivity("sms.net.bd - AfterModuleChangePassword: Service ID $serviceId not found");
             return null;
         }
-        $result   = $class->getClientDetailsBy($args['params']['clientsdetails']['userid']);
+        $service = mysql_fetch_assoc($serviceQuery);
+
+        // Use existing helper functions
+        $class = new Functions();
+        $result = $class->getClientDetailsBy($service['clientid']); // Pass clientid from service
         $company_details = $class->getCompanyName();
 
+        // Validate client data
         $num_rows = mysql_num_rows($result);
         if ($num_rows == 1) {
             $UserInformation = mysql_fetch_assoc($result);
 
+            // Validate phone number
             if (!$class->validatePhoneNumber($UserInformation['gsmnumber'])) {
-                logActivity('sms.net.bd - AfterModuleChangePassword :  ' . 'Invalid phone number Provided', 0);
+                logActivity('sms.net.bd - AfterModuleChangePassword: Invalid phone number');
                 return null;
             }
 
-            $template['variables'] = str_replace(" ", "", $template['variables']);
-            $replacefrom           = explode(",", $template['variables']);
-            $replaceto = array($UserInformation['firstname'], $UserInformation['lastname'], $args['params']['domain'], $args['params']['username'], $args['params']['password'], $company_details['CompanyName']);
-            $message                = str_replace($replacefrom, $replaceto, $template['content']);
+            // Prepare template replacements
+            $replacefrom = explode(",", str_replace(" ", "", $hook['variables']));
+            $replaceto = array(
+                $UserInformation['firstname'],
+                $UserInformation['lastname'],
+                $service['domain'],
+                $service['username'],
+                $newPassword, // Use newpassword from hook args
+                $company_details['CompanyName']
+            );
+
+            // Build message
+            $message = str_replace($replacefrom, $replaceto, $hook['defaultmessage']);
+
+            // Send SMS
             $class->setNumber($UserInformation['gsmnumber']);
-            $class->setUserid($args['params']['clientsdetails']['userid']);
             $class->setMessage($message);
             $status = $class->send();
 
             if ($status == 'success') {
-                logActivity('SMS Notification of Module Password Change Sent Successfully', $args['params']['clientsdetails']['userid']);
+                logActivity("SMS Notification: Password changed for service $serviceId");
             }
         }
     }
