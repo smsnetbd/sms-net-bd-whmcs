@@ -23,7 +23,7 @@ function sms_net_bd_config()
     $configarray = array(
         "name"        => "sms.net.bd",
         "description" => "WHMCS SMS Addon. You can see details from : https://www.sms.net.bd",
-        "version"     => "1.0.1",
+        "version"     => "1.0.3",
         "author"      => "sms.net.bd",
         "language"    => "english",
     );
