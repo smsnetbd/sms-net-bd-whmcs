@@ -119,12 +119,12 @@ class Functions
         return mysql_query($userSql);
     }
 
-    public function getClientAndInvoiceDetailsBy($clientId)
+    public function getClientAndInvoiceDetailsBy($invoiceid)
     {
         $userSql = "
         SELECT a.total,a.duedate,b.id as userid,b.firstname,b.lastname,`b`.`country`,`b`.`phonenumber` as `gsmnumber` FROM `tblinvoices` as `a`
         JOIN tblclients as b ON b.id = a.userid
-        WHERE a.id = '" . $clientId . "'
+        WHERE a.id = '" . $invoiceid . "'
         LIMIT 1
     ";
         return mysql_query($userSql);
